@@ -1,0 +1,22 @@
+# Local agent / tool configuration
+.agents/
+.codex/
+.aws/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Temporary files
+*.log
+__pycache__/
+*.py[cod]
