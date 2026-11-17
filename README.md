@@ -1,5 +1,5 @@
 # AIRC Lab website demo
-
+test
 简约的实验室主页，包含 Home、Research、Publications、Team 四个页面。纯 HTML / CSS / JavaScript，无需构建、无需安装依赖，也不依赖外部字体、CDN 或图片服务。
 
 ## 文件结构
