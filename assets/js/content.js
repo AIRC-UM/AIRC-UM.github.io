@@ -22,9 +22,12 @@ window.AIRC = {
     { id: 'sample-manipulation', year: '2025', topic: 'Robotic Manipulation', title: 'Coordinated perception and action for object interaction', authors: 'Author One, Author Two, Corresponding Author', venue: 'Sample publication · replace with venue', summary: 'Add your actual publication information and optional links to a PDF, code repository, or project website.', selected: false, paper: '', code: '', project: '', bibtex: '' }
   ],
   team: [
-    { name: 'Faculty name', role: 'Principal Investigator', group: 'Faculty', focus: 'Research interests and a short introduction.', initials: 'PI', image: '', website: '' },
-    { name: 'Researcher name', role: 'PhD Student', group: 'Students', focus: 'Robot learning & control', initials: 'PhD', image: '', website: '' },
-    { name: 'Researcher name', role: 'PhD Student', group: 'Students', focus: 'Robotic manipulation', initials: 'PhD', image: '', website: '' },
-    { name: 'Researcher name', role: 'Master’s Student', group: 'Students', focus: 'Perception & planning', initials: 'MS', image: '', website: '' }
+    { name: 'Zhehua Zhou', group: 'Principal Investigator', focus: 'Research interests and a short introduction.', initials: 'PI', image: '', website: '' },
+    { name: 'Researcher name', group: 'Phd Students', focus: 'Robot learning & control', initials: 'PhD', image: '', website: '' },
+    { name: 'Researcher name', group: 'Phd Students', focus: 'Robotic manipulation', initials: 'PhD', image: '', website: '' },
+    { name: 'Researcher name', group: 'Phd Students', focus: 'Perception & planning', initials: 'PhD', image: '', website: '' },
+    { name: 'Researcher name', group: 'Phd Students', focus: 'Transfer Learning & planning', initials: 'PhD', image: '', website: '' },
+    { name: 'Researcher name', group: 'Phd Students', focus: 'Robot Locomotion', initials: 'PhD', image: '', website: '' },
+    { name: 'Researcher name', group: 'Master Students', focus: 'Robot Diffusion', initials: 'MS', image: '', website: '' },
   ]
 };
