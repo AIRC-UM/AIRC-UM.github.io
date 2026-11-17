@@ -43,7 +43,7 @@ python3 -m http.server 8000
 统一编辑 `assets/js/content.js`：
 
 - `description`：实验室简介。
-- `research`：研究方向、说明、标签。当前三个方向是示例，需按实际情况确认。
+- `research`：研究方向、说明、标签；`image` / `imageAlt` 配置首页卡片配图及其替代文字，首页摘要与 Research 页共用 `description`。当前三个方向是示例，需按实际情况确认。
 - `news`：近况，按时间从新到旧排列，可选 `url` 添加详情链接。
 - `publications`：论文年份、标题、作者、会议/期刊、摘要；`selected: true` 会显示在首页。列表页按年份从新到旧排序。
 - 论文的 `paper` / `code` / `project`：填写链接后自动出现对应入口，留空不显示。`bibtex` 填入真实引用后会出现可展开的引用文本。
@@ -82,3 +82,5 @@ python3 -m http.server 8000
 - Team：按角色分组的成员列表、可选照片及个人主页。
 
 设计：白底、深蓝、灰绿点缀，系统字体，无滚动动画、轮播、追踪脚本或第三方运行依赖。支持手机布局、键盘焦点、跳至正文、折叠菜单及无结果提示。
+
+页头澳门大学标志采用[澳门大学官方标识页面](https://www.um.edu.mo/about-um/identity/)提供的横版彩色标志，保存于 `assets/images/university-of-macau.png`，点击链接到澳门大学官网。
