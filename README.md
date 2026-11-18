@@ -53,6 +53,7 @@ python3 -m http.server 8000
 - `publications`：论文年份、标题、作者、会议/期刊、摘要；`selected: true` 会显示在首页。列表页按年份从新到旧排序。
 - 论文的 `paper` / `code` / `project`：填写链接后自动出现对应入口，留空不显示。`bibtex` 填入真实引用后会出现可展开的引用文本。
 - `team`：用 `name`、`group`、`focus` 填写姓名、分组和研究方向。`image` 可用本地相对路径，`website` 可填写个人主页。新增分组（如 Alumni）会自动显示。
+  - 学生组按姓氏字母顺序排列，同姓时按显示姓名排序。默认取 `name` 的最后一个单词作为姓氏。姓氏在前或由多个单词组成时，可用 `surname` 指定完整姓氏。
 - `affiliation` / `email` / `address` / `github`：填写真实机构与联系方式后显示。
 
 `news` 和 `publications` 中的示例条目可用实验室的真实近况和论文替换。

@@ -110,6 +110,8 @@ if(page === 'publications') {
   search.addEventListener('input',update); year.addEventListener('change',update); topic.addEventListener('change',update); update();
 }
 if(page === 'team') {
+  const compareNames = new Intl.Collator('en', { sensitivity: 'base' }).compare;
+  const surname = person => person.surname?.trim() || person.name.trim().split(/\s+/).pop();
   const personCard = person => {
     const image = safeURL(person.image);
     const portrait = image
@@ -122,6 +124,21 @@ if(page === 'team') {
         <p>${escapeHTML(person.focus)}</p>
       </article>`;
   };
-  main.innerHTML = `${intro('The people behind the work','Our team','A place for curious minds to explore artificial intelligence, robotics, and control together.')}<div class="container">${[...new Set(data.team.map(person=>person.group))].map(group=>`<section class="team-section"><h2>${escapeHTML(group)}</h2><div class="people-grid">${data.team.filter(person=>person.group===group).map(personCard).join('')}</div></section>`).join('')}</div>${contact}`;
+  const teamGroups = [...new Set(data.team.map(person => person.group))];
+  const teamSection = group => {
+    const people = data.team.filter(person => person.group === group);
+    if (/\bstudents?$/i.test(group)) {
+      people.sort((a, b) => compareNames(surname(a), surname(b)) || compareNames(a.name, b.name));
+    }
+    return `
+      <section class="team-section">
+        <h2>${escapeHTML(group)}</h2>
+        <div class="people-grid">${people.map(personCard).join('')}</div>
+      </section>`;
+  };
+  main.innerHTML = `
+    ${intro('The people behind the work','Our team','A place for curious minds to explore artificial intelligence, robotics, and control together.')}
+    <div class="container">${teamGroups.map(teamSection).join('')}</div>
+    ${contact}`;
 }
 document.querySelector('#footer').innerHTML = `<footer class="site-footer"><div class="container"><div class="footer-main"><div><div class="footer-name">AIRC Lab</div><div class="footer-description">Artificial Intelligence and Robot Control Lab${data.affiliation?`<br>${escapeHTML(data.affiliation)}`:''}</div></div><div class="footer-links"><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="team.html">Team</a>${link(data.github,'GitHub ↗')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} AIRC Lab</span><span>Artificial Intelligence & Robot Control</span></div></div></footer>`;
