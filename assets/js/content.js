@@ -17,12 +17,10 @@ window.AIRC = {
           title: 'Robot Imitation Learning & Transfer Learning',
           icon: 'assets/images/home/research-learning.svg',
           publicationTopic: 'Robot Learning',
-          image: 'assets/images/research/research-transfer-learning.svg',
-          imageAlt: 'A diagram of a robot skill transferring from simulation to a physical robot.',
           description: [
-            'Our research focuses on enabling robots to learn manipulation skills from demonstrations and transfer acquired knowledge across different tasks, environments, and robot embodiments. We investigate imitation learning approaches that allow robots to understand and reproduce human manipulation behaviors, bridging the gap between human motion and robotic execution. A key research direction is transferring manipulation skills from single-arm to dual-arm robotic systems, enabling robots to adapt learned behaviors to more complex tasks without requiring extensive bimanual demonstrations. Particular emphasis is placed on identifying transferable task representations, extracting essential motion patterns and interaction principles, and establishing correspondences across different embodiments. By combining imitation learning, cross-embodiment transfer, and task-aware adaptation, we aim to develop data-efficient and generalizable learning frameworks that enable robots to acquire, adapt, and reuse manipulation skills in diverse real-world scenarios.'
+            'We study how robots learn manipulation skills from human demonstrations and reuse those skills across tasks, environments, and robotic platforms.'
           ],
-          tags: ['Imitation learning', 'Transfer learning', 'Sim-2-real', 'SingleArm-2-DualArm']
+          tags: ['Imitation learning', 'Transfer learning']
         },
         {
           id: 'control',
@@ -63,13 +61,10 @@ window.AIRC = {
           title: 'Deformable Object Manipulation',
           iconText: '∿',
           publicationTopic: 'Robotic Manipulation',
-          image: 'assets/images/research/research-formable-manipulation.png',
-          imageAlt: 'A cable manipulation concept showing shaping, routing, assembly, dynamics learning, adaptation, and closed-loop control.',
           description: [
-            'This research explores how robots can understand, predict, and control the behavior of **deformable objects**, with a particular focus on cables and other flexible linear materials.',
-            'The scope spans cable shaping, routing through constrained environments, and assembly involving connector alignment and insertion. These tasks require robots to reason about changing geometry, material properties, and contact with surrounding structures. A central direction is learning structured dynamics models that predict how cables respond to manipulation. Combined with planning and feedback control, these models can guide action selection and support adjustments as tasks unfold. Another focus is adaptation through interaction: estimating unfamiliar physical properties and refining predictions from limited observations. By connecting physical modeling, robot learning, and closed-loop control, the research aims to develop manipulation methods that generalize across cable types, configurations, and task constraints. Potential applications include automated wiring, cable harness assembly, and flexible manufacturing.'
+            'We study how robots can reliably handle deformable objects, with a focus on cables and other flexible materials. Applications include cable routing and assembly.'
           ],
-          tags: ['Cable manipulation', 'Dynamics learning']
+          tags: ['Cable manipulation', 'Flexible materials']
         }
       ]
     },
