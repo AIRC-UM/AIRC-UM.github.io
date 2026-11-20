@@ -207,10 +207,10 @@ if(page === 'publications') {
 if(page === 'team') {
   const compareNames = new Intl.Collator('en', { sensitivity: 'base' }).compare;
   const surname = person => person.surname?.trim() || person.name.trim().split(/\s+/).pop();
-  const personCard = person => {
+  const personCard = (person, loading) => {
     const image = safeURL(person.image);
     const portrait = image
-      ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(person.name)}">`
+      ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(person.name)}" loading="${loading}" decoding="async">`
       : '<span class="portrait-placeholder" aria-hidden="true"></span>';
     return `
       <article class="person">
@@ -220,15 +220,16 @@ if(page === 'team') {
       </article>`;
   };
   const teamGroups = [...new Set(data.team.map(person => person.group))];
-  const teamSection = group => {
+  const teamSection = (group, groupIndex) => {
     const people = data.team.filter(person => person.group === group);
     if (/\bstudents?$/i.test(group)) {
       people.sort((a, b) => compareNames(surname(a), surname(b)) || compareNames(a.name, b.name));
     }
+    const loading = groupIndex === 0 ? 'eager' : 'lazy';
     return `
       <section class="team-section">
         <h2>${escapeHTML(group)}</h2>
-        <div class="people-grid">${people.map(personCard).join('')}</div>
+        <div class="people-grid">${people.map(person => personCard(person, loading)).join('')}</div>
       </section>`;
   };
   main.innerHTML = `
