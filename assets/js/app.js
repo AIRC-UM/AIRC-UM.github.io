@@ -129,8 +129,7 @@ if(page === 'home') {
 if(page === 'research') {
   main.innerHTML = `
     ${intro('Our research','Control.Learning.Manipulation','Exploring the connection between intelligent algorithms and physical systems.')}
-    <div class="container research-details">${data.research.map(researchGroup).join('')}</div>
-    ${contact}`;
+    <div class="container research-details">${data.research.map(researchGroup).join('')}</div>`;
 }
 if(page === 'publications') {
   main.innerHTML = `
@@ -238,7 +237,6 @@ if(page === 'team') {
   };
   main.innerHTML = `
     ${intro('The people behind the work','Our team','A place for curious minds to explore artificial intelligence, robotics, and control together.')}
-    <div class="container">${teamGroups.map(teamSection).join('')}</div>
-    ${contact}`;
+    <div class="container">${teamGroups.map(teamSection).join('')}</div>`;
 }
 document.querySelector('#footer').innerHTML = `<footer class="site-footer"><div class="container"><div class="footer-main"><div><div class="footer-name">AIRC Lab</div><div class="footer-description">Artificial Intelligence and Robot Control Lab${data.affiliation?`<br>${escapeHTML(data.affiliation)}`:''}</div></div><div class="footer-links"><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="team.html">Team</a>${link(data.github,'GitHub ↗')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} AIRC Lab</span><span>Artificial Intelligence & Robot Control</span></div></div></footer>`;
