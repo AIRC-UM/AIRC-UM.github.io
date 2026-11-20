@@ -22,18 +22,20 @@ const researchImage = (url, alt) => {
     </div>` : '';
 };
 
-const homeResearchTopic = topic => {
-  const icon = safeURL(topic.icon);
-  const iconMarkup = icon ? `<img src="${escapeHTML(icon)}" alt="" width="24" height="24" loading="lazy">` : escapeHTML(topic.iconText);
-  return `
-    <li>
-      <a class="topic-preview" href="${researchURL(topic.id)}">
-        <span class="topic-icon" aria-hidden="true">${iconMarkup}</span>
-        <span>${escapeHTML(topic.title)}</span>
-        ${arrow}
-      </a>
-    </li>`;
+const researchIcon = item => {
+  const icon = safeURL(item.icon);
+  const iconMarkup = icon ? `<img src="${escapeHTML(icon)}" alt="" width="24" height="24" loading="lazy">` : escapeHTML(item.iconText);
+  return `<span class="topic-icon" aria-hidden="true">${iconMarkup}</span>`;
 };
+
+const homeResearchTopic = topic => `
+  <li>
+    <a class="topic-preview" href="${researchURL(topic.id)}">
+      ${researchIcon(topic)}
+      <span>${escapeHTML(topic.title)}</span>
+      ${arrow}
+    </a>
+  </li>`;
 
 const homeResearchGroup = group => `
   <article class="research-overview-group" data-research="${escapeHTML(group.id)}">
@@ -58,6 +60,11 @@ const homeResearch = () => `
     </div>
   </section>`;
 
+const researchGroupHeading = (group, id) => `
+  <h2 class="research-group-heading"${id ? ` id="${id}"` : ''}>
+    ${researchIcon(group)}<span>${escapeHTML(group.title)}</span>
+  </h2>`;
+
 const researchDetail = (topic, heading = 'h3') => {
   const id = escapeHTML(topic.id);
   const paragraphs = [topic.description].flat().filter(Boolean);
@@ -67,7 +74,7 @@ const researchDetail = (topic, heading = 'h3') => {
     <article class="research-card" id="${id}" aria-labelledby="topic-${id}" tabindex="-1">
       ${researchImage(topic.image, topic.imageAlt)}
       <div class="research-card-copy">
-        <${heading} id="topic-${id}">${escapeHTML(topic.title)}</${heading}>
+        ${heading === 'h2' ? researchGroupHeading(topic, `topic-${id}`) : `<h3 id="topic-${id}">${escapeHTML(topic.title)}</h3>`}
         ${paragraphs.map(paragraph => `<p>${researchText(paragraph)}</p>`).join('')}
         ${tags.length ? `<div class="research-tags">${tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>` : ''}
         ${publicationTopic ? `<a class="text-link" href="publications.html?topic=${encodeURIComponent(publicationTopic)}">Related publications ${arrow}</a>` : ''}
@@ -77,16 +84,47 @@ const researchDetail = (topic, heading = 'h3') => {
 
 const researchGroup = group => group.topics.length ? `
   <section class="research-detail-group" id="${escapeHTML(group.id)}">
-    <h2>${escapeHTML(group.title)}</h2>
+    ${researchGroupHeading(group)}
     <div class="research-detail-list">
       ${group.topics.map(topic => researchDetail(topic)).join('')}
     </div>
   </section>` : `<div class="research-detail-group">${researchDetail(group, 'h2')}</div>`;
-const paperCard = item => `<article class="paper" id="${escapeHTML(item.id)}"><div class="paper-year">${escapeHTML(item.year)} <span aria-hidden="true">/</span></div><div><span class="tag">${escapeHTML(item.topic)}</span><h3>${escapeHTML(item.title)}</h3><p class="authors">${escapeHTML(item.authors)}</p><p class="venue">${escapeHTML(item.venue)}</p>${item.paper||item.code||item.project?`<div class="paper-links">${link(item.paper,'Paper ↗')}${link(item.code,'Code ↗')}${link(item.project,'Project ↗')}</div>`:''}<details><summary>Abstract</summary><p>${escapeHTML(item.summary)}</p></details>${item.bibtex?`<details><summary>BibTeX</summary><pre>${escapeHTML(item.bibtex)}</pre></details>`:''}</div></article>`;
+const newestPublicationFirst = (a, b) => b.year.localeCompare(a.year);
+const paperCard = item => {
+  const links = link(item.paper, 'Paper ↗') + link(item.code, 'Code ↗') + link(item.project, 'Project ↗');
+  return `
+    <article class="paper" id="${escapeHTML(item.id)}">
+      <div class="paper-year">${item.year ? `${escapeHTML(item.year)} <span aria-hidden="true">/</span>` : ''}</div>
+      <div>
+        ${item.topic ? `<span class="tag">${escapeHTML(item.topic)}</span>` : ''}
+        <h3>${escapeHTML(item.title)}</h3>
+        ${item.authors ? `<p class="authors">${escapeHTML(item.authors)}</p>` : ''}
+        ${item.venue ? `<p class="venue">${escapeHTML(item.venue)}</p>` : ''}
+        ${links ? `<div class="paper-links">${links}</div>` : ''}
+        ${item.summary ? `<details><summary>Abstract</summary><p>${escapeHTML(item.summary)}</p></details>` : ''}
+        <details><summary>BibTeX</summary><pre>${escapeHTML(item.bibtex)}</pre></details>
+      </div>
+    </article>`;
+};
 const contact = `<div class="container"><div class="contact-strip" id="contact"><div><h3>Let’s connect.</h3><p>${data.email?'For research inquiries and collaboration, get in touch.':'Lab contact information will be added here.'}</p>${data.affiliation?`<p>${escapeHTML(data.affiliation)}</p>`:''}${data.address?`<p>${escapeHTML(data.address)}</p>`:''}</div>${data.email?link(`mailto:${data.email}`,'Contact the lab ↗','text-link'):'<span class="text-link">Contact details coming soon</span>'}</div></div>`;
 const main = document.querySelector('#main');
 if(page === 'home') {
-  main.innerHTML = `<div class="container"><section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><h1 id="hero-title">Artificial Intelligence<br>and Robot Control <span>(AIRC) Lab</span></h1><p>${escapeHTML(data.description)}</p></div></section><section class="section news-layout" id="news"><div class="news-intro"><span class="eyebrow">From the lab</span><h2>Latest news</h2><p>Research updates, new ideas,<br>and life at AIRC.</p></div><div>${data.news.map(item=>`<article class="news-row"><div class="news-date">${escapeHTML(item.date)}</div><div><span class="tag">${escapeHTML(item.type)}</span><h3>${item.url?link(item.url,item.title):escapeHTML(item.title)}</h3><p>${escapeHTML(item.text)}</p></div></article>`).join('')}</div></section></div>${homeResearch()}<section class="container section" style="border-top:0"><div class="section-heading"><div><span class="eyebrow">Ideas into practice</span><h2>Selected publications</h2></div><a class="text-link" href="publications.html">All publications ${arrow}</a></div>${data.publications.filter(item=>item.selected).map(paperCard).join('')}</section>${contact}`;
+  main.innerHTML = `<div class="container"><section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><h1 id="hero-title">Artificial Intelligence<br>and Robot Control <span>(AIRC) Lab</span></h1><p>${escapeHTML(data.description)}</p></div></section><section class="section news-layout" id="news"><div class="news-intro"><span class="eyebrow">From the lab</span><h2>Latest news</h2><p>Research updates, new ideas,<br>and life at AIRC.</p></div><div>${data.news.map(item=>`<article class="news-row"><div class="news-date">${escapeHTML(item.date)}</div><div><span class="tag">${escapeHTML(item.type)}</span><h3>${item.url?link(item.url,item.title):escapeHTML(item.title)}</h3><p>${escapeHTML(item.text)}</p></div></article>`).join('')}</div></section></div>${homeResearch()}<div id="selected-publications"></div>${contact}`;
+  loadPublications().then(publications => {
+    const marked = publications.filter(item => item.selected === true);
+    const selected = marked.length
+      ? marked
+      : publications.filter(item => item.selected !== false).sort(newestPublicationFirst).slice(0, 2);
+    if (!selected.length) return;
+    document.querySelector('#selected-publications').innerHTML = `
+      <section class="container section" style="border-top:0">
+        <div class="section-heading">
+          <div><span class="eyebrow">Ideas into practice</span><h2>Selected publications</h2></div>
+          <a class="text-link" href="publications.html">All publications ${arrow}</a>
+        </div>
+        ${selected.map(paperCard).join('')}
+      </section>`;
+  }).catch(error => console.error(error));
 }
 if(page === 'research') {
   main.innerHTML = `
@@ -95,19 +133,76 @@ if(page === 'research') {
     ${contact}`;
 }
 if(page === 'publications') {
-  main.innerHTML = `${intro('Research output','Publications','A collection of research in artificial intelligence, robot learning, and control. Browse by year or topic, or search for a paper.')}<section class="container" aria-label="Publication library"><form class="filters" role="search"><div class="field"><label for="paper-search">SEARCH PUBLICATIONS</label><input id="paper-search" type="search" placeholder="Title, author, or keyword…" autocomplete="off"></div><div class="field year"><label for="paper-year">YEAR</label><select id="paper-year"><option value="">All years</option>${[...new Set(data.publications.map(item=>item.year))].sort().reverse().map(year=>`<option>${escapeHTML(year)}</option>`).join('')}</select></div><div class="field topic"><label for="paper-topic">RESEARCH AREA</label><select id="paper-topic"><option value="">All areas</option>${[...new Set(data.publications.map(item=>item.topic))].map(topic=>`<option>${escapeHTML(topic)}</option>`).join('')}</select></div></form><p class="result-count" id="result-count" role="status" aria-live="polite"></p><div id="paper-list"></div></section>`;
-  const search = document.querySelector('#paper-search'), year = document.querySelector('#paper-year'), topic = document.querySelector('#paper-topic');
-  const requestedTopic = new URLSearchParams(location.search).get('topic');
-  if ([...topic.options].some(option=>option.value===requestedTopic)) topic.value = requestedTopic;
-  const update = () => {
-    const query = search.value.trim().toLowerCase();
-    const papers = data.publications.filter(item=>(!year.value || item.year===year.value)&&(!topic.value || item.topic===topic.value)&&`${item.title} ${item.authors} ${item.topic} ${item.venue} ${item.summary}`.toLowerCase().includes(query)).sort((a,b)=>b.year.localeCompare(a.year));
-    document.querySelector('#result-count').textContent = `${papers.length} publication${papers.length===1?'':'s'}`;
-    document.querySelector('#paper-list').innerHTML = papers.length ? papers.map(paperCard).join('') : '<div class="empty"><h3>No publications found</h3><p>Try another keyword, year, or research area.</p><button class="button" id="reset-filters" type="button">Clear filters</button></div>';
-    document.querySelector('#reset-filters')?.addEventListener('click',()=>{search.value='';year.value='';topic.value='';update();search.focus();});
-  };
-  document.querySelector('form').addEventListener('submit',event=>event.preventDefault());
-  search.addEventListener('input',update); year.addEventListener('change',update); topic.addEventListener('change',update); update();
+  main.innerHTML = `
+    ${intro('Research output','Publications','A collection of research in artificial intelligence, robot learning, and control. Browse by year or topic, or search for a paper.')}
+    <section class="container" id="publication-library" aria-label="Publication library">
+      <p role="status">Loading publications…</p>
+    </section>`;
+  const library = document.querySelector('#publication-library');
+  loadPublications().then(publications => {
+    if (!publications.length) {
+      library.innerHTML = '<p class="empty" role="status">No publications have been added yet.</p>';
+      return;
+    }
+    const years = [...new Set(publications.map(item => item.year).filter(Boolean))].sort().reverse();
+    const topics = [...new Set(publications.map(item => item.topic).filter(Boolean))];
+    const options = values => values.map(value => `<option value="${escapeHTML(value)}">${escapeHTML(value)}</option>`).join('');
+    publications.sort(newestPublicationFirst);
+    library.innerHTML = `
+      <form class="filters" role="search">
+        <div class="field">
+          <label for="paper-search">SEARCH PUBLICATIONS</label>
+          <input id="paper-search" type="search" placeholder="Title, author, or keyword…" autocomplete="off">
+        </div>
+        <div class="field year">
+          <label for="paper-year">YEAR</label>
+          <select id="paper-year" ${years.length ? '' : 'disabled'}><option value="">All years</option>${options(years)}</select>
+        </div>
+        <div class="field topic">
+          <label for="paper-topic">RESEARCH AREA</label>
+          <select id="paper-topic" ${topics.length ? '' : 'disabled'}><option value="">All areas</option>${options(topics)}</select>
+        </div>
+      </form>
+      <p class="result-count" id="result-count" role="status" aria-live="polite"></p>
+      <div id="paper-list"></div>`;
+    const search = library.querySelector('#paper-search');
+    const year = library.querySelector('#paper-year');
+    const topic = library.querySelector('#paper-topic');
+    const resultCount = library.querySelector('#result-count');
+    const paperList = library.querySelector('#paper-list');
+    const requestedTopic = new URLSearchParams(location.search).get('topic');
+    if (topics.includes(requestedTopic)) topic.value = requestedTopic;
+
+    const update = () => {
+      const query = search.value.trim().toLowerCase();
+      const papers = publications.filter(item => {
+        const text = [item.title, item.authors, item.topic, item.venue, item.summary, item.keywords].join(' ');
+        return (!year.value || item.year === year.value)
+          && (!topic.value || item.topic === topic.value)
+          && text.toLowerCase().includes(query);
+      });
+      resultCount.textContent = `${papers.length} publication${papers.length === 1 ? '' : 's'}`;
+      paperList.innerHTML = papers.length ? papers.map(paperCard).join('') : '<div class="empty"><h3>No publications found</h3><p>Try another keyword, year, or research area.</p><button class="button" id="reset-filters" type="button">Clear filters</button></div>';
+      paperList.querySelector('button#reset-filters')?.addEventListener('click', () => {
+        search.value = '';
+        year.value = '';
+        topic.value = '';
+        update();
+        search.focus();
+      });
+    };
+    library.querySelector('form').addEventListener('submit', event => event.preventDefault());
+    search.addEventListener('input', update);
+    year.addEventListener('change', update);
+    topic.addEventListener('change', update);
+    update();
+  }).catch(error => {
+    const message = location.protocol === 'file:'
+      ? 'Start a local web server to preview the bibliography.'
+      : 'The bibliography could not be loaded.';
+    library.innerHTML = `<p class="empty" role="status">${message}</p>`;
+    console.error(error);
+  });
 }
 if(page === 'team') {
   const compareNames = new Intl.Collator('en', { sensitivity: 'base' }).compare;

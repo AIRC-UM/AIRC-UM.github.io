@@ -73,13 +73,18 @@
 .topic-icon img { width: 100%; height: 100%; object-fit: contain; }
 
 /* Topic details on Research */
-.research-details { margin-top: 36px; margin-bottom: 36px; }
+body[data-page="research"] .page-intro { padding-bottom: 18px; }
+body[data-page="research"] .page-intro p { margin-bottom: 0; }
+.research-details { margin-bottom: 36px; }
 .research-detail-group {
   padding: 32px 0;
   border-top: 1px solid var(--line);
   scroll-margin-top: 20px;
 }
+.research-detail-group:first-child { padding-top: 22px; }
 .research-detail-group h2 { margin: 0 0 20px; }
+.research-group-heading { display: flex; align-items: center; gap: 12px; }
+.research-group-heading .topic-icon { flex-basis: 36px; width: 36px; border-radius: 8px; }
 .research-detail-list { display: grid; gap: 22px; }
 .research-card {
   display: grid;
@@ -128,10 +133,12 @@ body[data-page="team"] .page-intro { padding-bottom: 18px; }
 body[data-page="team"] .page-intro p { margin-bottom: 0; }
 .team-section:first-child { margin-top: 0; padding-top: 22px; }
 
-/* Team photos and the default silhouette */
+/* Team member cards */
+.person { text-align: center; }
 .portrait {
   width: 80%;
   max-width: 200px;
+  margin-inline: auto;
   aspect-ratio: 3 / 4;
   display: grid;
   place-items: center;
