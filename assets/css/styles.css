@@ -130,6 +130,8 @@ body[data-page="team"] .page-intro p { margin-bottom: 0; }
 
 /* Team photos and the default silhouette */
 .portrait {
+  width: 80%;
+  max-width: 200px;
   aspect-ratio: 3 / 4;
   display: grid;
   place-items: center;
