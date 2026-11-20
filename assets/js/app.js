@@ -212,10 +212,14 @@ if(page === 'team') {
     const portrait = image
       ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(person.name)}" loading="${loading}" decoding="async">`
       : '<span class="portrait-placeholder" aria-hidden="true"></span>';
+    const websiteLink = link(person.website?.trim(), 'Website', 'text-link');
+    const email = person.email?.trim();
+    const emailLink = email ? link(`mailto:${email}`, email, 'text-link') : '';
     return `
       <article class="person">
         <div class="portrait">${portrait}</div>
-        <h3>${person.website ? link(person.website, person.name) : escapeHTML(person.name)}</h3>
+        <h3>${escapeHTML(person.name)}</h3>
+        ${websiteLink || emailLink ? `<div class="person-links">${websiteLink}${emailLink}</div>` : ''}
         <p>${escapeHTML(person.focus)}</p>
       </article>`;
   };

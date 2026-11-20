@@ -135,6 +135,20 @@ body[data-page="team"] .page-intro p { margin-bottom: 0; }
 
 /* Team member cards */
 .person { text-align: center; }
+.person-links {
+  display: grid;
+  justify-items: center;
+  margin: 2px 0 6px;
+}
+.person-links .text-link {
+  display: block;
+  max-width: 100%;
+  padding: 2px 4px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .portrait {
   width: 80%;
   max-width: 200px;

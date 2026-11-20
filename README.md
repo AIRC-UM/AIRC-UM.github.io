@@ -53,7 +53,7 @@ python3 -m http.server 8000
   - 大方向的 `icon` 用于 Research 页的标题图标。首页卡片下方显示子方向的标题和小图标。用子方向的 `icon` 填小图路径，或用 `iconText` 填一个符号。点击标题进入 Research 页的对应详情。
   - Research 显示子方向的 `description`（每段写成数组里的一项）、`image`、`imageAlt` 和 `tags`。可选的 `publicationTopic` 应与论文条目的 `topic` 一致。没有子方向的大方向可以在自己的 `description` 和 `image` 中填写详情和配图。
 - `news`：近况，按时间从新到旧排列，可选 `url` 添加详情链接。
-- `team`：用 `name`、`group`、`focus` 填写姓名、分组和研究方向。`image` 可用本地相对路径，`website` 可填写个人主页。新增分组（如 Alumni）会自动显示。
+- `team`：用 `name`、`group`、`focus` 填写姓名、分组和研究方向。`image` 可用本地相对路径。`website` 可填写个人主页网址，`email` 可直接填写邮箱地址。两项填好后会在对应成员的姓名下方显示。新增分组（如 Alumni）会自动显示。
   - 学生组按姓氏字母顺序排列，同姓时按显示姓名排序。默认取 `name` 的最后一个单词作为姓氏。姓氏在前或由多个单词组成时，可用 `surname` 指定完整姓氏。
 - `affiliation` / `email` / `address` / `github`：填写真实机构与联系方式后显示。
 
