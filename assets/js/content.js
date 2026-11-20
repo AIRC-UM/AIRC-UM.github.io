@@ -100,7 +100,7 @@ window.AIRC = {
     { name: 'Zhehua Zhou', group: 'Principal Investigator', focus: '', image: 'assets/images/team/Photo_Zhehua_Zhou.webp', website: 'https://zhehuazhou.github.io', email: 'zhzhou@um.edu.mo' },
     { name: 'Sihua Zhang', group: 'Postdoctoral Researchers', focus: 'Safety control | control barrier function | safety motion planning', image: 'assets/images/team/sihua_zhang.webp', website: '', email: 'sihuazhang@um.edu.mo' },
     { name: 'Ziqian Li', group: 'Phd Students', focus: 'Dexterous Manipulation | Tactile Sensing | Contact-Rich Manipulation', image: 'assets/images/team/ziqian_li.webp', website: '', email: 'ziqian.li@connect.um.edu.mo' },
-    { name: 'Heng Liu', group: 'Phd Students', focus: 'Robotic Manipulation Robot | Planning and Control | Autonomous Robotic Systems', image: 'assets/images/team/heng_liu.webp', website: '', email: 'heng.liu@connect.um.edu.mo' },
+    { name: 'Heng Liu', group: 'Phd Students', focus: 'Robotic Manipulation | Robot Planning and Control | Autonomous Robotic Systems', image: 'assets/images/team/heng_liu.webp', website: '', email: 'heng.liu@connect.um.edu.mo' },
     { name: 'Jiale Dong', group: 'Phd Students', focus: 'Deformable Manipulation', image: 'assets/images/team/jiale_dong.webp', website: '', email: 'yc68113@connect.um.edu.mo' },
     { name: 'Xuecong Huang', group: 'Phd Students', focus: 'locomanipulation | JEPA worldmodel', image: 'assets/images/team/xuecong_huang.webp?v=2', website: 'https://lockedflysher.github.io/', email: 'lockedflysher@proton.me' },
     { name: 'Yulong Feng', group: 'Master Students', focus: 'Robot Control | Transfer Learning', image: 'assets/images/team/yulong_feng.webp', website: '', email: 'yulong.feng@connect.um.edu.no' },
