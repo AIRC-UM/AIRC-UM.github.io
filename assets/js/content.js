@@ -18,6 +18,8 @@ window.AIRC = {
           title: 'Robot Imitation Learning & Transfer Learning',
           icon: 'assets/images/home/research-learning.svg',
           publicationTopic: 'Robot Learning',
+          image: 'assets/images/research/research-transfer-learning.webp',
+          imageAlt: 'An operator holds a controller beside a single robot arm and a separate dual-arm station with colored blocks.',
           description: [
             'Our research focuses on **Imitation Learning** and **Transfer Learning** for robotic manipulation, enabling robots to acquire skills from demonstrations and apply them across diverse tasks and robotic embodiments. We explore learning manipulation behaviors from human demonstrations and transferring skills between different robotic systems, particularly from single-arm to dual-arm manipulation. Our goal is to reduce reliance on extensive task-specific demonstrations and advance the development of versatile robotic learning systems capable of acquiring, adapting, and reusing manipulation skills in complex real-world environments.'
           ],
@@ -63,6 +65,7 @@ window.AIRC = {
           title: 'Deformable Object Manipulation',
           iconText: '∿',
           publicationTopic: 'Robotic Manipulation',
+          image: 'assets/images/research/research-deformable-cable-square.webp',
           description: [
             'Our research focuses on robotic manipulation of **deformable objects**, particularly cables and other flexible linear materials. We aim to enable robots to understand and handle the complex behaviors of deformable objects across diverse manipulation tasks, including cable shaping, routing, and assembly. Our work explores the challenges of manipulating objects with changing shapes and physical properties, with an emphasis on reliable interaction and adaptation to different materials and environments. Potential applications include automated wiring, cable harness assembly, and flexible manufacturing.'
           ],
