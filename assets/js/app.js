@@ -78,7 +78,7 @@ const researchDetail = (topic, heading = 'h3') => {
     : `<button class="demo-button" type="button" disabled>${demoLabel} <small>Coming soon</small></button>`;
   return `
     <article class="research-card" id="${id}" aria-labelledby="topic-${id}" tabindex="-1">
-      ${researchImage(topic.image, topic.imageAlt, demoButton)}
+      ${researchImage(topic.image, topic.imageAlt, document.body.dataset.researchVideos === 'hidden' ? '' : demoButton)}
       <div class="research-card-copy">
         ${heading === 'h2' ? researchGroupHeading(topic, `topic-${id}`) : `<h3 id="topic-${id}">${escapeHTML(topic.title)}</h3>`}
         ${paragraphs.map(paragraph => `<p>${researchText(paragraph)}</p>`).join('')}
