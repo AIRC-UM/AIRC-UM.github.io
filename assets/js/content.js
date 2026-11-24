@@ -18,6 +18,7 @@ window.AIRC = {
           title: 'Robot Imitation Learning & Transfer Learning',
           icon: 'assets/images/home/research-learning.svg',
           publicationTopic: 'Robot Learning',
+          videoUrl: 'assets/videos/teleoperation-act-cup-flip.mp4',
           image: 'assets/images/research/research-transfer-learning.webp',
           imageAlt: 'An operator holds a controller beside a single robot arm and a separate dual-arm station with colored blocks.',
           description: [
@@ -30,6 +31,7 @@ window.AIRC = {
           title: 'Task and Motion Planning',
           icon: 'assets/images/home/research-control.svg',
           publicationTopic: 'Intelligent Control',
+          videoUrl: 'assets/videos/task-and-motion-planning.mp4',
           image: 'assets/images/research/task-and-motion-planning.webp',
           imageAlt: 'A branching task reasoning diagram with one path highlighted, above a dual-arm assembly simulation and a physical robot with blocks and an inset of the target structure.',
           description: [
@@ -52,6 +54,7 @@ window.AIRC = {
           title: 'Dexterous Manipulation',
           icon: 'assets/images/home/research-manipulation.svg',
           publicationTopic: 'Robotic Manipulation',
+          videoUrl: 'assets/videos/dexterous-manipulation.mp4',
           image: 'assets/images/research/research-dexterous-manipulation.png',
           imageAlt: 'A robotic gripper using a camera to locate an object.',
           description: [
@@ -65,6 +68,7 @@ window.AIRC = {
           title: 'Deformable Object Manipulation',
           iconText: '∿',
           publicationTopic: 'Robotic Manipulation',
+          videoUrl: 'assets/videos/deformable-object-manipulation.mp4',
           image: 'assets/images/research/research-deformable-cable-square.webp',
           description: [
             'Our research focuses on robotic manipulation of **deformable objects**, particularly cables and other flexible linear materials. We aim to enable robots to understand and handle the complex behaviors of deformable objects across diverse manipulation tasks, including cable shaping, routing, and assembly. Our work explores the challenges of manipulating objects with changing shapes and physical properties, with an emphasis on reliable interaction and adaptation to different materials and environments. Potential applications include automated wiring, cable harness assembly, and flexible manufacturing.'
@@ -85,6 +89,7 @@ window.AIRC = {
           id: 'locomotion-manipulation',
           title: 'Locomotion Manipulation',
           icon: 'assets/images/research/icon-locomotion.svg',
+          videoUrl: 'assets/videos/locomotion-manipulation.mp4',
           image: 'assets/images/research/research-loco-manipulation.png',
           imageAlt: 'A conceptual illustration of motion planning and feedback.',
           description: [

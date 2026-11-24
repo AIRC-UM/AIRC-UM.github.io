@@ -14,11 +14,12 @@ const intro = (eyebrow,title,description) => `<div class="container"><div class=
 const researchURL = id => `research.html#${encodeURIComponent(id)}`;
 const researchText = value => escapeHTML(value).replace(/\*\*([^*\r\n]+)\*\*/g, '<strong>$1</strong>');
 
-const researchImage = (url, alt) => {
+const researchImage = (url, alt, overlay = '') => {
   const image = safeURL(url);
   return image ? `
     <div class="research-card-image">
       <img src="${escapeHTML(image)}" alt="${escapeHTML(alt)}" loading="lazy">
+      ${overlay}
     </div>` : '';
 };
 
@@ -70,9 +71,14 @@ const researchDetail = (topic, heading = 'h3') => {
   const paragraphs = [topic.description].flat().filter(Boolean);
   const tags = topic.tags ?? [];
   const publicationTopic = topic.publicationTopic;
+  const demoURL = safeURL(topic.videoUrl);
+  const demoLabel = '<span aria-hidden="true">▶</span> Watch video';
+  const demoButton = demoURL
+    ? `<a class="demo-button" href="${escapeHTML(demoURL)}" aria-label="Watch video for ${escapeHTML(topic.title)}">${demoLabel}</a>`
+    : `<button class="demo-button" type="button" disabled>${demoLabel} <small>Coming soon</small></button>`;
   return `
     <article class="research-card" id="${id}" aria-labelledby="topic-${id}" tabindex="-1">
-      ${researchImage(topic.image, topic.imageAlt)}
+      ${researchImage(topic.image, topic.imageAlt, demoButton)}
       <div class="research-card-copy">
         ${heading === 'h2' ? researchGroupHeading(topic, `topic-${id}`) : `<h3 id="topic-${id}">${escapeHTML(topic.title)}</h3>`}
         ${paragraphs.map(paragraph => `<p>${researchText(paragraph)}</p>`).join('')}
