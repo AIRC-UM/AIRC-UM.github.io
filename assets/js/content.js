@@ -69,7 +69,6 @@ window.AIRC = {
           iconText: '∿',
           publicationTopic: 'Robotic Manipulation',
           videoUrl: 'assets/videos/deformable-object-manipulation.mp4',
-          image: 'assets/images/research/research-deformable-cable-square.webp',
           description: [
             'Our research focuses on robotic manipulation of **deformable objects**, particularly cables and other flexible linear materials. We aim to enable robots to understand and handle the complex behaviors of deformable objects across diverse manipulation tasks, including cable shaping, routing, and assembly. Our work explores the challenges of manipulating objects with changing shapes and physical properties, with an emphasis on reliable interaction and adaptation to different materials and environments. Potential applications include automated wiring, cable harness assembly, and flexible manufacturing.'
           ],
