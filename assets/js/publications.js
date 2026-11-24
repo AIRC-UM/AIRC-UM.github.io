@@ -19,6 +19,13 @@ function publicationLink(value) {
   }
 }
 
+const publicationFigures = {
+  '10766903': { file: 'gensafe.png', alt: 'GenSafe corrects the learning agent’s action using immediate and future cost constraints.' },
+  '10449470': { file: 'dual-arm.png', alt: 'Two arms grasp a chair, with grasp pairs, manipulability ellipsoids and self-collision configurations annotated.' },
+  '9528905': { file: 'safe-region.png', alt: 'Nominal system training data and real system feedback update a low-dimensional representation of the safe region.' },
+  '9106864': { file: 'safety-framework.png', alt: 'System feedback updates the safe-region estimate used by the supervisor.' }
+};
+
 function publicationFromBibtex(entry) {
   const field = name => {
     const value = String(entry.properties[name] ?? '').trim();
@@ -39,6 +46,7 @@ function publicationFromBibtex(entry) {
 
   return {
     id: entry.label,
+    figure: publicationFigures[entry.label],
     title: text('title') || entry.label,
     authors,
     venue,

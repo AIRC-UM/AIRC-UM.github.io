@@ -97,11 +97,14 @@ const researchGroup = group => group.topics.length ? `
   </section>` : `<div class="research-detail-group">${researchDetail(group, 'h2')}</div>`;
 const newestPublicationFirst = (a, b) => b.year.localeCompare(a.year);
 const paperCard = item => {
+  const year = `<div class="paper-year">${item.year ? `${escapeHTML(item.year)} <span aria-hidden="true">/</span>` : ''}</div>`;
   const links = link(item.paper, 'Paper ↗') + link(item.code, 'Code ↗') + link(item.project, 'Project ↗');
   return `
     <article class="paper" id="${escapeHTML(item.id)}">
-      <div class="paper-year">${item.year ? `${escapeHTML(item.year)} <span aria-hidden="true">/</span>` : ''}</div>
+      ${item.figure ? `<img class="paper-figure" src="assets/images/publication/${escapeHTML(item.figure.file)}" alt="${escapeHTML(item.figure.alt)}" loading="lazy">` : ''}
+      ${!item.figure ? year : ''}
       <div>
+        ${item.figure ? year : ''}
         ${item.topic ? `<span class="tag">${escapeHTML(item.topic)}</span>` : ''}
         <h3>${escapeHTML(item.title)}</h3>
         ${item.authors ? `<p class="authors">${escapeHTML(item.authors)}</p>` : ''}
