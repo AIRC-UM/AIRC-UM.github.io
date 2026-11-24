@@ -194,3 +194,28 @@ body[data-page="team"] .page-intro p { margin-bottom: 0; }
   height: 36%;
   border-radius: 50% 50% 10% 10% / 90% 90% 15% 15%;
 }
+
+/* Four photographic panels behind the home introduction. */
+.hero {
+  display: grid;
+  align-items: end;
+  min-height: clamp(390px, 32vw, 620px);
+  padding: 60px 0 38px;
+  background: linear-gradient(0deg, rgba(8, 22, 37, .94), rgba(8, 22, 37, .72) 31%, rgba(8, 22, 37, .08) 76%),
+    url("../images/home/airc-panorama.webp") center / cover no-repeat, #132e4a;
+  color: white;
+  text-align: center;
+}
+.hero-copy.container { width: min(var(--max), calc(100% - 64px)); margin-block: 0; }
+.hero h1 { font-weight: 600; line-height: 1.08; margin-bottom: 14px; }
+.hero-copy > p { margin: 0; max-width: 700px; color: #edf3f7; }
+@media (max-width: 700px) {
+  .hero {
+    min-height: clamp(390px, 96vw, 490px);
+    padding: 40px 0 28px;
+    background-image: linear-gradient(0deg, rgba(8, 22, 37, .97), rgba(8, 22, 37, .75) 35%, rgba(8, 22, 37, .08) 80%),
+      url("../images/home/airc-panels-mobile.webp");
+    background-size: cover;
+  }
+  .hero-copy.container { width: calc(100% - 40px); }
+}

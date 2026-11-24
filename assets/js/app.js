@@ -109,7 +109,7 @@ const paperCard = item => {
 const contact = `<div class="container"><div class="contact-strip" id="contact"><div><h3>Let’s connect.</h3><p>${data.email?'For research inquiries and collaboration, get in touch.':'Lab contact information will be added here.'}</p>${data.affiliation?`<p>${escapeHTML(data.affiliation)}</p>`:''}${data.address?`<p>${escapeHTML(data.address)}</p>`:''}</div>${data.email?link(`mailto:${data.email}`,'Contact the lab ↗','text-link'):'<span class="text-link">Contact details coming soon</span>'}</div></div>`;
 const main = document.querySelector('#main');
 if(page === 'home') {
-  main.innerHTML = `<div class="container"><section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><h1 id="hero-title">Artificial Intelligence<br>and Robot Control <span>(AIRC) Lab</span></h1><p>${escapeHTML(data.description)}</p></div></section></div>${homeResearch()}<div id="selected-publications"></div>${contact}`;
+  main.innerHTML = `<section class="hero" aria-labelledby="hero-title"><div class="hero-copy container"><h1 id="hero-title">Artificial Intelligence<br>and Robot Control <span>(AIRC) Lab</span></h1><p>${escapeHTML(data.description)}</p></div></section>${homeResearch()}<div id="selected-publications"></div>${contact}`;
   loadPublications().then(publications => {
     const marked = publications.filter(item => item.selected === true);
     const selected = marked.length
