@@ -74,7 +74,7 @@ const researchDetail = (topic, heading = 'h3') => {
   const demoURL = safeURL(topic.videoUrl);
   const demoLabel = '<span aria-hidden="true">▶</span> Watch video';
   const demoButton = demoURL
-    ? `<a class="demo-button" href="${escapeHTML(demoURL)}" aria-label="Watch video for ${escapeHTML(topic.title)}">${demoLabel}</a>`
+    ? `<a class="demo-button" href="${escapeHTML(demoURL)}" target="_blank" rel="noopener" aria-label="Watch video for ${escapeHTML(topic.title)} (opens in a new tab)">${demoLabel}</a>`
     : `<button class="demo-button" type="button" disabled>${demoLabel} <small>Coming soon</small></button>`;
   return `
     <article class="research-card" id="${id}" aria-labelledby="topic-${id}" tabindex="-1">
